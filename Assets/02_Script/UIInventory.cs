@@ -12,7 +12,7 @@ public class UIInventory : MonoBehaviour
     public TextMeshProUGUI selectedItemName;
 
     private ItemDataSO selectedItem;
-    private int selectedItemIndex = 0;
+    private int selectedItemIndex = -1;
 
     private int curEquipIndex;
 
@@ -22,8 +22,10 @@ public class UIInventory : MonoBehaviour
 
         PlayerManager.Instance.Player.addItemEvent += AddItem;
         PlayerManager.Instance.Player.controller.InventoryEvent += SelectItem;
+        PlayerManager.Instance.Player.guideClear += RemoeveSelectedItem;
+        PlayerManager.Instance.Player.guideClear += UnEquip;
 
-        selectedItemName.text = string.Empty;
+        ClearSelectedItemWindow();
 
         for (int i =0; i < slots.Length; i++)
         {
@@ -81,6 +83,8 @@ public class UIInventory : MonoBehaviour
 
     public void SelectItem()
     {
+        selectedItemIndex++;
+
         if (selectedItemIndex >= slots.Length)
             selectedItemIndex = 0;
 
@@ -95,7 +99,6 @@ public class UIInventory : MonoBehaviour
             PlayerManager.Instance.Player.equip.EquipNew(selectedItem);
         }
 
-        selectedItemIndex++;
     }
 
     public void OnEquipButton()
@@ -109,4 +112,26 @@ public class UIInventory : MonoBehaviour
         }
     }
 
+    private void ClearSelectedItemWindow()
+    {
+        selectedItemName.text = string.Empty;
+    }
+
+    private void RemoeveSelectedItem()
+    {
+        Debug.Log(selectedItemIndex);
+        if(slots[selectedItemIndex] != null)
+        {
+            selectedItem = null;
+            slots[selectedItemIndex].item = null;
+
+            ClearSelectedItemWindow();
+        }
+        UpdateUI();
+    }
+
+    private void UnEquip()
+    {
+        PlayerManager.Instance.Player.equip.UnEquip();
+    }
 }

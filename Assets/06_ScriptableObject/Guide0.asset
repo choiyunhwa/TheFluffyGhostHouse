@@ -14,3 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   num: 0
   guideContents: "\uC5F4\uC1E0\uB97C \uCC3E\uC544 \uBB38\uC744 \uC5F4\uC5B4\uC8FC\uC138\uC694."
+  checkItem: {fileID: 391245266463490650, guid: 3858d4ff85a7e3b47b501a34e14c61bb, type: 3}

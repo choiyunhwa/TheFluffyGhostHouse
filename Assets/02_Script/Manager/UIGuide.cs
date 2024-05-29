@@ -14,10 +14,15 @@ public class UIGuide : MonoBehaviour
         PlayerManager.Instance.Player.guideEvent += GetGuideData;
     }
     public void GetGuideData(GameGuideSO guideData)
-    {
+    {   
         content.SetActive(true);
         guide.text = guideData.guideContents;
+        StartCoroutine(CoDelay());
     }
 
-
+    IEnumerator CoDelay()
+    {
+        yield return new WaitForSeconds(2f);
+        content.SetActive(false);
+    }
 }

@@ -71,6 +71,8 @@ public class Interaction : MonoBehaviour
             curExecute.OnExecute();
             curExecute = null;
             curInteractGameObject = null;
+
+            PlayerManager.Instance.Player.guideClear?.Invoke();
         }
     }
 
