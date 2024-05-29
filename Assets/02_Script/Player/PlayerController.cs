@@ -12,6 +12,7 @@ public class PlayerController : MonoBehaviour
 
     [Header("Jump")]
     public float jumpForce;
+    public float jumpZoneForce;
     public LayerMask groundLayerMask;
 
     [Header("Look")]
@@ -24,6 +25,7 @@ public class PlayerController : MonoBehaviour
     private Vector2 mouseDelta;
 
     private Rigidbody rigid;
+    private bool isJumpZone;
 
     public Action InventoryEvent;
 
@@ -64,7 +66,7 @@ public class PlayerController : MonoBehaviour
 
     public void OnJumpInput(InputAction.CallbackContext context)
     {
-        if (context.phase == InputActionPhase.Started && IsGrounded())
+        if (context.phase == InputActionPhase.Started && IsGrounded() || !isJumpZone)
         {
             rigid.AddForce(Vector2.up * jumpForce, ForceMode.Impulse);
         }
@@ -116,4 +118,17 @@ public class PlayerController : MonoBehaviour
         return false;
     }
 
+    private void OnCollisionEnter(Collision col)
+    {
+        if(col.gameObject.tag == "JumpZone")
+        {
+            isJumpZone = true;
+
+            if (isJumpZone)
+            {
+                rigid.AddForce(Vector2.up * jumpZoneForce, ForceMode.Impulse);
+                isJumpZone = false;
+            }
+        }
+    }
 }
