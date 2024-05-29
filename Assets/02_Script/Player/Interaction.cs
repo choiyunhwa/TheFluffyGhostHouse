@@ -12,6 +12,9 @@ public class Interaction : MonoBehaviour
 
     private GameObject curInteractGameObject;
     private IInteractable curInteractable;
+    private IExecute curExecute;
+
+    public GameObject guideUI;
 
     private Camera camera;
 
@@ -34,13 +37,19 @@ public class Interaction : MonoBehaviour
                 if (hit.collider.gameObject != curInteractGameObject)
                 {
                     curInteractGameObject = hit.collider.gameObject;
-                    curInteractable = hit.collider.GetComponent<IInteractable>();
+                    //curInteractable = hit.collider.GetComponent<IInteractable>();
+
+                    hit.collider.TryGetComponent<IInteractable>(out curInteractable);
+                    hit.collider.TryGetComponent<IExecute>(out curExecute);
+
+                    Debug.Log(curInteractGameObject);
                 }
             }
             else
             {
                 curInteractGameObject = null;
                 curInteractable = null;
+                curExecute = null;
             }
         }
     }
@@ -52,6 +61,16 @@ public class Interaction : MonoBehaviour
             curInteractable.OnInteract();
             curInteractGameObject = null;
             curInteractable = null;
+        }
+    }
+
+    public void OnExecute(InputAction.CallbackContext context)
+    {
+        if(context.phase == InputActionPhase.Started && curExecute != null)
+        {
+            curExecute.OnExecute();
+            curExecute = null;
+            curInteractGameObject = null;
         }
     }
 

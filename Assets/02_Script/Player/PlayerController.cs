@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -23,6 +24,8 @@ public class PlayerController : MonoBehaviour
     private Vector2 mouseDelta;
 
     private Rigidbody rigid;
+
+    public Action InventoryEvent;
 
     private void Awake()
     {
@@ -66,7 +69,14 @@ public class PlayerController : MonoBehaviour
             rigid.AddForce(Vector2.up * jumpForce, ForceMode.Impulse);
         }
     }
-
+    public void SelectInventoryItem(InputAction.CallbackContext context)
+    {
+        if (context.phase == InputActionPhase.Started)
+        {
+            InventoryEvent?.Invoke();
+         
+        }
+    }
     private void Move()
     {
         Vector3 dir = transform.forward * curMovementInput.y + transform.right * curMovementInput.x;
@@ -105,4 +115,5 @@ public class PlayerController : MonoBehaviour
 
         return false;
     }
+
 }

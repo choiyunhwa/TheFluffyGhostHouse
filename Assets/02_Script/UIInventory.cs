@@ -7,8 +7,12 @@ public class UIInventory : MonoBehaviour
 {
     public ItemSlot[] slots;
     public Transform slotCondition;
+    public Transform slotChoiceIcon;
 
     public TextMeshProUGUI selectedItemName;
+
+    private ItemDataSO selectedItem;
+    private int selectedItemIndex = 0;
 
     private int curEquipIndex;
 
@@ -17,6 +21,7 @@ public class UIInventory : MonoBehaviour
         slots = new ItemSlot[slotCondition.childCount];
 
         PlayerManager.Instance.Player.addItemEvent += AddItem;
+        PlayerManager.Instance.Player.controller.InventoryEvent += SelectItem;
 
         selectedItemName.text = string.Empty;
 
@@ -73,4 +78,35 @@ public class UIInventory : MonoBehaviour
 
         return null;
     }
+
+    public void SelectItem()
+    {
+        if (selectedItemIndex >= slots.Length)
+            selectedItemIndex = 0;
+
+        slotChoiceIcon.position = new Vector3(slots[selectedItemIndex].transform.position.x, slotChoiceIcon.position.y, slotChoiceIcon.position.z);
+
+        PlayerManager.Instance.Player.equip.UnEquip();
+        if (slots[selectedItemIndex].item != null)
+        {
+            selectedItem = slots[selectedItemIndex].item;
+            selectedItemName.text = selectedItem.itemName;
+            
+            PlayerManager.Instance.Player.equip.EquipNew(selectedItem);
+        }
+
+        selectedItemIndex++;
+    }
+
+    public void OnEquipButton()
+    {
+        switch (slots[selectedItemIndex].item.itemType)
+        {
+            case ItemType.Equipable:
+                break;
+            case ItemType.Prop:
+                break;
+        }
+    }
+
 }
