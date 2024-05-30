@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Guide1
   m_EditorClassIdentifier: 
   num: 1
-  guideContents: "\uC810\uD504\uB300\uB97C \uC774\uC6A9\uD558\uC5EC /n\uC5F4\uC1E0\uB97C
+  guideContents: "\uC810\uD504\uB300\uB97C \uC774\uC6A9\uD558\uC5EC \uC5F4\uC1E0\uB97C
     \uD68D\uB4DD\uD558\uC138\uC694."
   checkItem: {fileID: 391245266463490650, guid: 3858d4ff85a7e3b47b501a34e14c61bb, type: 3}

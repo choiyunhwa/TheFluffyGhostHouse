@@ -12,7 +12,7 @@ public class UIInventory : MonoBehaviour
     public TextMeshProUGUI selectedItemName;
 
     private ItemDataSO selectedItem;
-    private int selectedItemIndex = -1;
+    private int selectedItemIndex = 0;
 
     private int curEquipIndex;
 

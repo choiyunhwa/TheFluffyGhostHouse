@@ -957,6 +957,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 7447022692853072251, guid: 6b07ab31d47036645833e234477aa56f, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7447022692853072251, guid: 6b07ab31d47036645833e234477aa56f, type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: 321e9b90624fca547af62122b6a47da8, type: 2}
     - target: {fileID: 7447022692854842267, guid: 6b07ab31d47036645833e234477aa56f, type: 3}
       propertyPath: m_LocalPosition.x
       value: -11.034
@@ -2776,6 +2784,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e821fd9e190b9e43b5a087b62750f5d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  firstGuide: {fileID: 11400000, guid: 88a61cec909cb57489e886c151d243c0, type: 2}
   content: {fileID: 686251242}
   guide: {fileID: 1372341350}
 --- !u!1001 &130288448
@@ -4494,7 +4503,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9127586027668007992, guid: 2f2ff5c103656c94ca51d5bbd62d1ca9, type: 3}
       propertyPath: m_Layer
-      value: 10
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 9127586027668500504, guid: 2f2ff5c103656c94ca51d5bbd62d1ca9, type: 3}
       propertyPath: m_RootOrder
@@ -10406,7 +10415,7 @@ GameObject:
   - component: {fileID: 439065186}
   - component: {fileID: 439065188}
   - component: {fileID: 439065187}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -16537,8 +16546,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 5
-  jumpForce: 2
-  jumpZoneForce: 10
+  jumpForce: 30
+  jumpZoneForce: 50
   groundLayerMask:
     serializedVersion: 2
     m_Bits: 64
@@ -33450,7 +33459,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9127586027668007992, guid: 2f2ff5c103656c94ca51d5bbd62d1ca9, type: 3}
       propertyPath: m_Layer
-      value: 10
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 9127586027668500504, guid: 2f2ff5c103656c94ca51d5bbd62d1ca9, type: 3}
       propertyPath: m_RootOrder
@@ -37681,6 +37690,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 7447022692853072251, guid: 6b07ab31d47036645833e234477aa56f, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7447022692853072251, guid: 6b07ab31d47036645833e234477aa56f, type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: 321e9b90624fca547af62122b6a47da8, type: 2}
     - target: {fileID: 7447022692854842267, guid: 6b07ab31d47036645833e234477aa56f, type: 3}
       propertyPath: m_LocalPosition.x
       value: -8.682
@@ -43379,13 +43396,13 @@ GameObject:
   - component: {fileID: 2128637614}
   - component: {fileID: 2128637613}
   - component: {fileID: 2128637612}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2128637611
 RectTransform:
   m_ObjectHideFlags: 0
@@ -44776,8 +44793,8 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.145118
-  m_Height: 0.73960495
+  m_Radius: 0.24
+  m_Height: 0.83
   m_Direction: 1
   m_Center: {x: -0.0075883865, y: 0.33836842, z: 0.00768137}
 --- !u!195 &2676405799456251328
@@ -45209,7 +45226,8 @@ GameObject:
   - component: {fileID: 4179086730578860832}
   - component: {fileID: 4179086730577762784}
   - component: {fileID: 4179086730578860833}
-  m_Layer: 8
+  - component: {fileID: 4179086730578860834}
+  m_Layer: 0
   m_Name: Table_Small
   m_TagString: JumpZone
   m_Icon: {fileID: 0}
@@ -45303,6 +45321,19 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 2.8570788, y: 0.15988249, z: 1.4271603}
   m_Center: {x: 0.0023927824, y: 0.7800584, z: 0.019798957}
+--- !u!114 &4179086730578860834
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4179086730575496992}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d001ee586ab953142a80f3dd6059b385, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canvas: {fileID: 2128637610}
 --- !u!4 &4324253822980562431 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8303196684913818076, guid: fbd964f5dc556d64daede200dc2e89d0, type: 3}

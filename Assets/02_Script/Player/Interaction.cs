@@ -13,6 +13,7 @@ public class Interaction : MonoBehaviour
     private GameObject curInteractGameObject;
     private IInteractable curInteractable;
     private IExecute curExecute;
+    private InfoObject curInfoObject;
 
     public GameObject guideUI;
 
@@ -40,6 +41,11 @@ public class Interaction : MonoBehaviour
 
                     hit.collider.TryGetComponent<IInteractable>(out curInteractable);
                     hit.collider.TryGetComponent<IExecute>(out curExecute);
+
+                    if (hit.collider.TryGetComponent<InfoObject>(out curInfoObject))
+                    {
+                        curInfoObject.ControlCanvas(true);
+                    }
                 }
             }
             else
@@ -47,6 +53,11 @@ public class Interaction : MonoBehaviour
                 curInteractGameObject = null;
                 curInteractable = null;
                 curExecute = null;
+                if(curInfoObject != null)
+                {
+                    curInfoObject.ControlCanvas(false);
+                    curInfoObject = null;
+                }                
             }
         }
     }
@@ -63,7 +74,7 @@ public class Interaction : MonoBehaviour
 
     public void OnExecute(InputAction.CallbackContext context)
     {
-        if(context.phase == InputActionPhase.Started && curExecute != null)
+        if(context.phase == InputActionPhase.Started && curExecute != null && PlayerManager.Instance.Player.equip.curEquip != null)
         {
             curExecute.OnExecute();
             curExecute = null;
