@@ -21,7 +21,7 @@ public class UIInventory : MonoBehaviour
         slots = new ItemSlot[slotCondition.childCount];
 
         PlayerManager.Instance.Player.addItemEvent += AddItem;
-        PlayerManager.Instance.Player.controller.InventoryEvent += SelectItem;
+        PlayerManager.Instance.Player.controller.inventoryEvent += SelectItem;
         PlayerManager.Instance.Player.guideClear += RemoeveSelectedItem;
         PlayerManager.Instance.Player.guideClear += UnEquip;
 

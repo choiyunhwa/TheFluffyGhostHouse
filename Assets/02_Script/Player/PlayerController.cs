@@ -22,16 +22,22 @@ public class PlayerController : MonoBehaviour
     private float camCurXRot;
     public float lookSensitivity;
 
+    public bool canLook;
+
     private Vector2 mouseDelta;
 
     private Rigidbody rigid;
     private bool isJumpZone;
 
-    public Action InventoryEvent;
-
+    public Action inventoryEvent;
+    public Action<Vector2> moveEvent;
     private void Awake()
     {
         rigid = GetComponent<Rigidbody>();
+    }
+    private void Start()
+    {
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     private void FixedUpdate()
@@ -48,12 +54,13 @@ public class PlayerController : MonoBehaviour
     {
         if(context.phase == InputActionPhase.Performed)
         {
-            curMovementInput = context.ReadValue<Vector2>();
+            curMovementInput = context.ReadValue<Vector2>();            
         }
         else if (context.phase == InputActionPhase.Canceled)
         {
             curMovementInput = Vector2.zero;
         }
+        moveEvent?.Invoke(curMovementInput);
     }
 
     public void OnLookInput(InputAction.CallbackContext context)
@@ -69,13 +76,14 @@ public class PlayerController : MonoBehaviour
         if (context.phase == InputActionPhase.Started && IsGrounded() || !isJumpZone)
         {
             rigid.AddForce(Vector2.up * jumpForce, ForceMode.Impulse);
+            PlayerManager.Instance.Player.condition.UseMana(2);
         }
     }
     public void SelectInventoryItem(InputAction.CallbackContext context)
     {
         if (context.phase == InputActionPhase.Started)
         {
-            InventoryEvent?.Invoke();
+            inventoryEvent?.Invoke();
          
         }
     }

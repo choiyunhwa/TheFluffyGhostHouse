@@ -37,12 +37,9 @@ public class Interaction : MonoBehaviour
                 if (hit.collider.gameObject != curInteractGameObject)
                 {
                     curInteractGameObject = hit.collider.gameObject;
-                    //curInteractable = hit.collider.GetComponent<IInteractable>();
 
                     hit.collider.TryGetComponent<IInteractable>(out curInteractable);
                     hit.collider.TryGetComponent<IExecute>(out curExecute);
-
-                    Debug.Log(curInteractGameObject);
                 }
             }
             else

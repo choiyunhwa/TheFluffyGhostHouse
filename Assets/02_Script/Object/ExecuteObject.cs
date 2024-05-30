@@ -9,7 +9,7 @@ public class ExecuteObject : MonoBehaviour, IExecute
     
     public void OnExecute()
     {
-        if(PlayerManager.Instance.Player.equip.curEquip.gameObject.name.Contains(nextGuide.checkItem.name))
+        if(PlayerManager.Instance.Player.equip.curEquip.gameObject.name.Contains(nextGuide.checkItem.name) && PlayerManager.Instance.Player.equip.curEquip != null)
         {
             PlayerManager.Instance.Player.guideEvent?.Invoke(nextGuide);
 
